@@ -1,66 +1,118 @@
 class Persona {
-    id
-    static contadorId = 0
+    #id
+    #nombre
+    #apellido
+    #edad
+    static #contadorId = 0
 
     constructor(nombre, apellido, edad) {
         if (!nombre || !apellido || edad < 15) {
             throw new Error("Los datos ingresados son inválidos")
         }
 
-        this.id = ++Persona.contadorId
-        this.nombre = nombre
-        this.apellido = apellido
-        this.edad = edad
+        this.#id = ++Persona.#contadorId
+        this.#nombre = nombre
+        this.#apellido = apellido
+        this.#edad = edad
     }
 
     toString() {
-        return `ID: ${this.id} - Nombre: ${this.nombre} ${this.apellido} - Edad: ${this.edad}`
+        return `ID: ${this.#id} - Nombre: ${this.#nombre} ${this.#apellido} - Edad: ${this.#edad}`
+    }
+
+    get id() {
+        return this.#id
+    }
+
+    get nombre() {
+    return this.#nombre
+    }
+
+    get apellido() {
+        return this.#apellido
+    }
+
+    get edad() {
+        return this.#edad
     }
 }
 
 class Futbolista extends Persona {
+    #equipo
+    #posicion
+    #cantidadGoles
+
     constructor(nombre, apellido, edad, equipo, posicion, cantidadGoles) {
-        if (!equipo || !posicion || cantidadGoles < -1) {
+        if (!equipo || !posicion || cantidadGoles < 0) {
             throw new Error("Los datos ingresados son inválidos")
         }
 
         super(nombre, apellido, edad)
-        this.equipo = equipo
-        this.posicion = posicion
-        this.cantidadGoles = cantidadGoles
+
+        this.#equipo = equipo
+        this.#posicion = posicion
+        this.#cantidadGoles = cantidadGoles
     }
 
     toString() {
-        return `${super.toString()} - Equipo: ${this.equipo} - Posición: ${this.posicion} - Cantidad de goles: ${this.cantidadGoles}`
+        return `${super.toString()} - Equipo: ${this.#equipo} - Posición: ${this.#posicion} - Cantidad de goles: ${this.#cantidadGoles}`
+    }
+
+    get equipo() {
+    return this.#equipo
+    }
+
+    get posicion() {
+        return this.#posicion
+    }
+
+    get cantidadGoles() {
+        return this.#cantidadGoles
     }
 }
 
 class Profesional extends Persona {
+    #titulo
+    #facultad
+    #añoGraduacion
+
     constructor(nombre, apellido, edad, titulo, facultad, añoGraduacion) {
         if (!titulo || !facultad || añoGraduacion < 1950) {
             throw new Error("Los datos ingresados son inválidos")
         }
 
         super(nombre, apellido, edad)
-        this.titulo = titulo
-        this.facultad = facultad
-        this.añoGraduacion = añoGraduacion
+
+        this.#titulo = titulo
+        this.#facultad = facultad
+        this.#añoGraduacion = añoGraduacion
     }
 
     toString() {
-        return `${super.toString()} - Título: ${this.titulo} - Facultad: ${this.facultad} - Año de graduación: ${this.añoGraduacion}`
+        return `${super.toString()} - Título: ${this.#titulo} - Facultad: ${this.#facultad} - Año de graduación: ${this.#añoGraduacion}`
+    }
+
+    get titulo() {
+    return this.#titulo
+    }
+
+    get facultad() {
+        return this.#facultad
+    }
+
+    get añoGraduacion() {
+        return this.#añoGraduacion
     }
 }
 
-const datos = JSON.parse('[{"id":1, "nombre":"Marcelo", "apellido":"Luque", "edad":45, "titulo":"Ingeniero", "facultad":"UTN", "añoGraduacion":2002},{"id":2, "nombre":"Ramiro", "apellido":"Escobar", "edad":35, "titulo":"Medico", "facultad":"UBA", "añoGraduacion":20012},{"id":3, "nombre":"Facundo", "apellido":"Cairo", "edad":30, "titulo":"Abogado", "facultad":"UCA", "añoGraduacion":2017},{"id":4, "nombre":"Fernando", "apellido":"Nieto", "edad":18, "equipo":"Independiente", "posicion":"Delantero", "cantidadGoles":7},{"id":5, "nombre":"Manuel", "apellido":"Loza", "edad":20, "equipo":"Racing", "posicion":"Volante", "cantidadGoles":2},{"id":6, "nombre":"Nicolas", "apellido":"Serrano", "edad":23, "equipo":"Boca", "posicion":"Arquero", "cantidadGoles":0}]')
+const datos = JSON.parse('[{"id":1, "nombre":"Marcelo", "apellido":"Luque", "edad":45, "titulo":"Ingeniero", "facultad":"UTN", "añoGraduacion":2002},{"id":2, "nombre":"Ramiro", "apellido":"Escobar", "edad":35, "titulo":"Medico", "facultad":"UBA", "añoGraduacion":2012},{"id":3, "nombre":"Facundo", "apellido":"Cairo", "edad":30, "titulo":"Abogado", "facultad":"UCA", "añoGraduacion":2017},{"id":4, "nombre":"Fernando", "apellido":"Nieto", "edad":18, "equipo":"Independiente", "posicion":"Delantero", "cantidadGoles":7},{"id":5, "nombre":"Manuel", "apellido":"Loza", "edad":20, "equipo":"Racing", "posicion":"Volante", "cantidadGoles":2},{"id":6, "nombre":"Nicolas", "apellido":"Serrano", "edad":23, "equipo":"Boca", "posicion":"Arquero", "cantidadGoles":0}]')
 
-function mapeadorPersonas (personas) {
-    return personas.map((persona) => {
+function mapeadorPersonas (datos) {
+    return datos.map((persona) => {
         if (persona.titulo) {
             return new Profesional(persona.nombre, persona.apellido, persona.edad, persona.titulo, persona.facultad, persona.añoGraduacion)
-        } else {
-            return new Futbolista(persona.nombre, persona.apellido, persona.edad, persona.equipo, persona.posicion, persona.cantidadGoles)
         }
+        return new Futbolista(persona.nombre, persona.apellido, persona.edad, persona.equipo, persona.posicion, persona.cantidadGoles)
     })
 }
 
@@ -74,27 +126,29 @@ personas.forEach((persona) => {
 
 document.addEventListener("DOMContentLoaded", () => {
     const cuerpoTabla = document.querySelector("#tablaPersonas > tbody")
-    const selector = document.getElementById("filtro")
-
-    const botonCalcular = document.getElementById("botonCalcular")
-    const inputEdad = document.getElementById("edadPromedio")
 
     const formularioDatos = document.getElementById("listado")
-    const formularioABM = document.getElementById("ABM")
+    const selector = document.getElementById("filtro")
+    const inputEdad = document.getElementById("edadPromedio")
+    const botonCalcular = document.getElementById("botonCalcular")
     const botonAgregar = document.getElementById("botonAgregar")
-    const botonAlta = document.getElementById("botonAlta")
 
-    render(cuerpoTabla, personas)
+    const formularioABM = document.getElementById("ABM")
+    const botonAlta = document.getElementById("botonAlta")
+    const botonModificar = document.getElementById("botonModificar")
+    const botonEliminar = document.getElementById("botonEliminar")
+    const botonCancelar = document.getElementById("botonCancelar")
+
+    renderizar(cuerpoTabla, personas)
 
     selector.addEventListener("change", (evento) => {
         const tipo = evento.target.value
-        const datosFiltrados = filtrarPorTipo(personas, tipo)
+        personasTabla = filtrarPorTipo(personas, tipo)
 
-        renderizarTabla(cuerpoTabla, personasTabla)
+        renderizar(cuerpoTabla, personasTabla)
     })
 
     botonCalcular.addEventListener("click", () => {
-        calcularEdadPromedio(personasTabla)
         inputEdad.value = calcularEdadPromedio(personasTabla)
     })
 
@@ -103,19 +157,33 @@ document.addEventListener("DOMContentLoaded", () => {
     })
 
     botonAlta.addEventListener("click", (evento) => {
-        altaPersona(formuularioABM)
+        altaPersona(formularioABM)
+        intercambiarFormularios(formularioABM, formularioDatos)
+    })
+
+    botonModificar.addEventListener("click", (evento) => {
+        // modificarPersona(formularioABM)
+        intercambiarFormularios(formularioABM, formularioDatos)
+    })
+
+    botonEliminar.addEventListener("click", (evento) => {
+        // eliminarPersona(formularioABM)
+        intercambiarFormularios(formularioABM, formularioDatos)
+    })
+
+    botonCancelar.addEventListener("click", (evento) => {
         intercambiarFormularios(formularioABM, formularioDatos)
     })
 })
 
-function renderizarTabla (tabla, datos) {
+function renderizar (tabla, datos) {
     tabla.innerHTML = ""
     const filas = []
 
     for (const persona of datos) {
-        let tr = document.createElement("tr")
+        let fila = document.createElement("tr")
         
-        tr.innerHTML = `
+        fila.innerHTML = `
         <td>${persona.id}</td>
         <td>${persona.nombre}</td>
         <td>${persona.apellido}</td>
@@ -127,10 +195,7 @@ function renderizarTabla (tabla, datos) {
         <td>${persona.facultad ?? '--'}</td>
         <td>${persona.añoGraduacion ?? '--'}</td>`
 
-        tr.addEventListener("doubleclick", () => {
-
-        })
-        filas.push(tr)
+        filas.push(fila)
     }
     
     filas.forEach(fila => tabla.appendChild(fila))
