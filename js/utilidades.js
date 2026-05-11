@@ -1,5 +1,5 @@
-import { Profesional } from "./Profesional.js"
-import { Futbolista } from "./Futbolista.js"
+import { Profesional } from "clases/Profesional.js"
+import { Futbolista } from "clases/Futbolista.js"
 
 export function filtrarPorTipo (datos, tipo) {
     if (tipo === "profesional") {

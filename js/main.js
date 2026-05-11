@@ -1,6 +1,6 @@
-import { personas } from "./data.js"
+import { personas } from "./datos.js"
 import * as Ui from "./ui.js"
-import * as Utilidades from "./utils.js"
+import * as Utilidades from "./utilidades.js"
 
 let personasTabla = [].concat(personas)
 
