@@ -3,33 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="js/main.js"></script>
+    <script type="module" src="js/main.js"></script>
     <link rel="stylesheet" href="styles.css">
     <title>ABM Personas</title>
 </head>
 <body>
     <main>
         <section id="listado">
-            <form action="">
+            <form>
                 <h2>Formulario Datos</h2>
-                <label>Filtrar Por <select name="filtro" id="filtro">
+                <label>Filtrar Por <select id="filtro" name="filtro">
                     <option value="todos">Todos</option>
                     <option value="futbolista">Futbolistas</option>
                     <option value="profesional">Profesionales</option>
                 </select></label>
-                <label>Calcular Edad Promedio<input id="edadPromedio" readonly type="text"><button id="botonCalcular" type="button">Calcular</button></label> 
+                <label>Calcular Edad Promedio<input id="edadPromedio" type="text" readonly><button id="botonCalcular" type="button">Calcular</button></label> 
                 <div>
                     <h4>Mostrar Columnas</h4>
-                    <label><input type="checkbox">ID</label>
-                    <label><input type="checkbox">Nombre</label>
-                    <label><input type="checkbox">Apellido</label>
-                    <label><input type="checkbox">Edad</label>
-                    <label><input type="checkbox">Equipo</label>
-                    <label><input type="checkbox">Posición</label>
-                    <label><input type="checkbox">Cantidad de Goles</label>
-                    <label><input type="checkbox">Título</label>
-                    <label><input type="checkbox">Facultad</label>
-                    <label><input type="checkbox">Año de Graduación</label>
+                    <label><input type="checkbox" data-columna="0" checked>ID</label>
+                    <label><input type="checkbox" data-columna="1" checked>Nombre</label>
+                    <label><input type="checkbox" data-columna="2" checked>Apellido</label>
+                    <label><input type="checkbox" data-columna="3" checked>Edad</label>
+                    <label><input type="checkbox" data-columna="4" checked>Equipo</label>
+                    <label><input type="checkbox" data-columna="5" checked>Posición</label>
+                    <label><input type="checkbox" data-columna="6" checked>Cantidad de Goles</label>
+                    <label><input type="checkbox" data-columna="7" checked>Título</label>
+                    <label><input type="checkbox" data-columna="8" checked>Facultad</label>
+                    <label><input type="checkbox" data-columna="9" checked>Año de Graduación</label>
                 </div>
             </form>
             <table id="tablaPersonas">
@@ -55,21 +55,21 @@
         </section>
         <section id="ABM">
             <h2>Formulario ABM</h2>
-            <form action="">
-                <label>ID<input type="text"></label>
-                <label>Nombre<input type="text"></label>
-                <label>Apellido<input type="text"></label>
-                <label>Edad<input type="text"></label>
-                <label>Tipo <select name="tipo" id="tipo">
+            <form>
+                <label>ID<input name="id" type="text" readonly></label>
+                <label>Nombre<input name="nombre" type="text"></label>
+                <label>Apellido<input name="apellido" type="text"></label>
+                <label>Edad<input name="edad" type="text"></label>
+                <label>Tipo <select id="tipo" name="tipo">
                     <option value="futbolista">Futbolista</option>
                     <option value="profesional">Profesional</option>
                 </select></label>
-                <label>Equipo<input type="text"></label>
-                <label>Posición<input type="text"></label>
-                <label>Cantidad de Goles<input type="text"></label>
-                <label>Año de Graduación<input type="text"></label>
-                <label>Título<input type="text"></label>
-                <label>Facultad<input type="text"></label>
+                <label>Equipo<input name="equipo" type="text"></label>
+                <label>Posición<input name="posicion" type="text"></label>
+                <label>Cantidad de Goles<input name="cantidadGoles" type="text"></label>
+                <label>Año de Graduación<input name="añoGraduacion" type="text"></label>
+                <label>Título<input name="titulo" type="text"></label>
+                <label>Facultad<input name="facultad" type="text"></label>
             </form>
             <button id="botonAlta" type="button">Alta</button>
             <button id="botonModificar" type="button">Modificar</button>
