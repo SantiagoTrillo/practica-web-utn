@@ -32,7 +32,7 @@ function mostrarCartas() {
     divCartas.innerHTML = ""
 
     cartas.forEach(carta => {
-        divCartas.appendChild(carta.createHtmlElement())
+        divCartas.appendChild(carta.createHtmlElement(false))
     })
 }
 

@@ -25,7 +25,7 @@ export class Carta {
         )
     }
 
-    createHtmlElement() {
+    createHtmlElement(agregarBotonGuardar = true) {
         const elementoCarta = document.createElement('div')
 
         elementoCarta.classList.add('carta')
@@ -38,9 +38,11 @@ export class Carta {
             <p>Precio: $${this.#precio}</p>
         `
 
-        const botonGuardar = this.crearBotonGuardar()
+        if (agregarBotonGuardar) {
+            const botonGuardar = this.crearBotonGuardar()
 
-        elementoCarta.appendChild(botonGuardar)
+            elementoCarta.appendChild(botonGuardar)
+        }
 
         return elementoCarta
     }
