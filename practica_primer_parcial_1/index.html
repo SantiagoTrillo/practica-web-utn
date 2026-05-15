@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script type="module" src="js/main.js"></script>
-    <link rel="stylesheet" href="css/styles.css">
+    <script src="./main.js"></script>
+    <link rel="stylesheet" href="styles.css">
     <title>ABM Personas</title>
 </head>
 <body>
@@ -64,12 +64,16 @@
                     <option value="futbolista">Futbolista</option>
                     <option value="profesional">Profesional</option>
                 </select></label>
-                <label>Equipo<input name="equipo" type="text"></label>
-                <label>Posición<input name="posicion" type="text"></label>
-                <label>Cantidad de Goles<input name="cantidadGoles" type="text"></label>
-                <label>Año de Graduación<input name="añoGraduacion" type="text"></label>
-                <label>Título<input name="titulo" type="text"></label>
-                <label>Facultad<input name="facultad" type="text"></label>
+                <div id="camposFutbolista">
+                    <label>Equipo<input name="equipo" type="text"></label>
+                    <label>Posición<input name="posicion" type="text"></label>
+                    <label>Cantidad de Goles<input name="cantidadGoles" type="text"></label>
+                </div>
+               <div id="camposProfesional">
+                    <label>Año de Graduación<input name="añoGraduacion" type="text"></label>
+                    <label>Título<input name="titulo" type="text"></label>
+                    <label>Facultad<input name="facultad" type="text"></label>
+               </div>
             </form>
             <button id="botonAlta" type="button">Alta</button>
             <button id="botonModificar" type="button">Modificar</button>
